@@ -1,4 +1,4 @@
-D![cf](http://i.imgur.com/7v5ASc8.png) Lab 12: MVC Part 2
+![cf](http://i.imgur.com/7v5ASc8.png) Lab 12: MVC Part 2
 =====================================
 
 ## To Submit this Assignment
