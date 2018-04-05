@@ -17,6 +17,7 @@
     </environment>
 </head>
 <body>
+    <!--
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -37,11 +38,28 @@
             </div>
         </div>
     </nav>
+        -->
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+                <h1>Movie Library</h1>
+                <h3>A simple, database-driven movie listing service.</h3>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <nav class="navbar-default">
+                <ul class="nav nav-pills nav-justified">
+                    <li class="@(ViewData["Title"] != "About" && ViewData["Title"] != "Contact" ? "active" : "")"><a asp-controller="Movies" asp-action="Index">Movie Library</a></li>
+                    <li class="@(ViewData["Title"] == "About" ? "active" : "")"><a asp-controller="Home" asp-action="About">About This App</a></li>
+                    <li class="@(ViewData["Title"] == "Contact" ? "active" : "")"><a asp-controller="Home" asp-action="Contact">Contact The Developer</a></li>
+                </ul>
+        </nav>
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - MovieLibrary</p>
+            <p>&copy; 2018 <a href="mailto:taylor.joshua88@gmail.com">Joshua William Taylor</a></p>
         </footer>
     </div>
 
