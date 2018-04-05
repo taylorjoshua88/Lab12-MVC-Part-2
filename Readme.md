@@ -104,4 +104,4 @@ used action.
 ## Change Log
 
 * 4.4.2018 [Joshua Taylor](mailto:taylor.joshua88@gmail.com) - Initial
-release. All included tests are passing.
+release.
