@@ -1,70 +1,107 @@
-![cf](http://i.imgur.com/7v5ASc8.png) Lab 12: MVC Part 2
-=====================================
+# Movie Library
 
-## To Submit this Assignment
-- fork this repository
-- write all of your code in a directory named `lab-#`; + `<your name>` **e.g.** `lab12-amanda`
-- push to your repository
-- submit a pull request to this repository
-- submit a link to your PR in canvas
+**Author**: Joshua Taylor
+**Version**: 1.0.0
 
+## Overview
 
-## Directions
+Movie Library demonstrates basic ASP.NET Core 2.0 MVC, Razor Views, and
+creating SQL database connections through Visual Studio's scaffolding features
+and DbContext. A simple interface for performing create, read, update, and
+delete (CRUD) operations on a database-backed collection of movies is the
+primary experience on the site in addition to an about page and contact
+information.
 
-1. Read and complete the following [Tutorial](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?tabs=aspnetcore2x)
-	1. Get Started
-	1. Add a Controller
-	1. Add a view
-	1. Add a Model
-	1. Work with SQL Server Local DB
-	1. Controller Methods and views
-	1. Add search
-	1. Add a new field
-	1. Add Validation
-	1. Examine the Details and Delete Methods
+The main page for this web application can be accessed by pointing directly to 
+the server (the Home controller's Index action redirects to the Movies
+controller's Index action) or clicking the "Movie Library" link in the
+navigation bar.
 
-1. Add Css and html to your copmleted Movie Library site. Restructure your `HomeController` to be more customized to your creativity.
+## Getting Started
 
+Movie Library targets the .NET Core 2.0 platform, ASP.NET Core, Entity
+Framework Core and the MVC Framework. The .NET Core 2.0 SDK can be downloaded 
+from the following URL for Windows, Linux, and macOS:
 
+https://www.microsoft.com/net/download/
 
-## ReadMe
-A README is a module consumer's first -- and maybe only -- look into your creation. The consumer wants a module to fulfill their need, so you must explain exactly what need your module fills, and how effectively it does so.
-<br />
-Your job is to
+Additionally, the Entity Framework tools will need to be installed via the
+NuGet Package Manager Console in order to create a migration for the local,
+development database (run from the solution root):
 
-1. tell them what it is (with context)
-2. show them what it looks like in action
-3. show them how they use it
-4. tell them any other relevant details
-<br />
+    Install-Package Microsoft.EntityFrameworkCore.Tools
+	Add-Migration Initial
+	Update-Database
 
-This is ***your*** job. It's up to the module creator to prove that their work is a shining gem in the sea of slipshod modules. Since so many developers' eyes will find their way to your README before anything else, quality here is your public-facing measure of your work.
+The dotnet CLI utility would then be used to build and run the application:
 
-<br /> <br /> Refer to the sample-README in the class repo for an example. 
-- [Reference](https://github.com/noffle/art-of-readme)
+    cd MovieLibrary
+    dotnet build
+    dotnet run
 
-## Rubric
-- 7pts: Program meets all requirements described in Lab directions
-**Tests not required for this lab**
+The _dotnet run_ command will start an HTTP server on localhost using Kestrel
+which can be accessed by the user's browser pointing to localhost on the port
+provided by _dotnet run_'s console output.
 
-	Points  | Reasoning | 
-	 ------------ | :-----------: | 
-	7       | Program runs as expected, no exceptions during execution |
-	5       | Program runs/compiles, Program contains logic/process errors|
-	4       | Program runs/compiles, but throws exceptions during execution |
-	2       | Missing tests // tests are not passing // not enough valid tests |
-	2       | Missing Readme Document // Readme Document does not meet standards |
-	0       | Program does not compile/run. Build Errors // Required naming conventions not met |
-	0       | No Submission |
+Additionally, users can build and run Movie Library using Visual Studio
+2017 or greater by opening the solution file at the root of this repository.
+All dependencies are referenced via NuGet and should be brought in during
+the restore process. If this does not occur, the following will download all
+needed dependencies (other than the Entity Framework tools):
 
-- 3pts: Code meets industry standards
-	- These points are only awardable if you score at minimum a 5/7 on above criteria
+    dotnet restore
 
-	Points  | Reasoning | 
-	 ------------ | :-----------: | 
-	3       | Code meets Industry Standards // methods and variables namings are appropriate // Selective and iterative statements are used appropriately, Fundamentals are propertly executed // Clearly and cleanly commented |
-	2       | syntax for naming conventions are not correct (camelCasing and PascalCasing are used appropriately) // slight errors in use of fundamentals // Missing some comments |
-	1       | Inappropriate naming conventions, and/or inappropriate use of fundamentals // Code is not commented  |
-	0       | No Submission or incomplete submission |
+## Example
 
+#### Index View of Movie Library ####
+![Index View Screenshot](/assets/index.JPG)
+#### Movie Details View ####
+![Movie Details Screenshot](/assets/details.JPG)
+#### Edit Movie View ####
+![Edit Movie Screenshot](/assets/edit.JPG)
+#### Delete Movie View ####
+![Delete Movie Screenshot](/assets/delete.JPG)
+#### Context Specific Navigation Bar ####
+![Navigation Bar Screenshot](/assets/navbar.JPG)
+#### Scalable Content and Navigation ####
+![Scalable Components Screenshot](/assets/scalable.JPG)
 
+## Architecture
+
+Movie Library uses two controllers: _HomeController_, and _MoviesController_.
+
+### HomeController
+
+_HomeController_ provides actions for displaying static information to the
+user in the form of an _About_ action and a _Contact_ action. The _Index_
+action is set to simply redirect the user to the _Index_ action of the
+_MoviesController_.
+
+### MoviesController
+
+_MoviesController_ delivers the primary user experience for the Movie Library
+application. Actions have been defined for CRUD operations on the movies
+within the library in the form of _Create_, _Details_, _Edit_, and _Delete_
+(respectively). The _Index_ action delivers a simple overview of the movie
+library and provides links to the other actions available on this controller.
+
+### Data Model (Movie)
+
+The data model consists of a single table, _Movie_, which is represented in
+code by the _Movie_ class. _Movie_ contains an integer-based primary key ID,
+a release date, genre, price, and MPAA content rating. Movie Library was
+implemented using code-first migrations and uses attribute-based validation
+tags on the C# side.
+
+### Frontend
+
+All frontend code has been developed using Bootstrap and JQuery. Some
+modifications were made to the default Bootstrap CSS styling provided by
+Visual Studio. A shared layout is used for the header and footer of the page
+which brings in the rendered Razor View content for the user's currently
+used action.
+
+## Change Log
+
+* 4.4.2018 [Joshua Taylor](mailto:taylor.joshua88@gmail.com) - Initial
+release. All included tests are passing.
